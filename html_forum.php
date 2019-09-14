@@ -1,3 +1,8 @@
+<?php
+// setting defualt vals for input forum
+$userName = $email = $password = $location = $contactNumber = ""
+?>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -22,22 +27,31 @@
             <span class="forumHeaderText">
                 <P> This is just a quick and basic html forum testing out php, HTML5 and CSS</P>
             </span>
-            <form class="form" action="./forum.php">
+            <form class="form" method="get">
                 userName: <br />
-                <input type="text" name="userName" placeholder="userName"><br /><br />
+                <input type="text" name="userName" placeholder="userName" value="<?php echo $userName ?>"><br /><br />
                 email: <br />
-                <input type="text" name="email" placeholder="email"><br /><br />
+                <input type="text" name="email" placeholder="email" value="<?php echo $email ?>"><br /><br />
                 password:<br />
-                <input type="text" name="password" placeholder="password"><br /><br />
+                <input type="text" name="password" placeholder="password" value="<?php echo $password ?>"><br /><br />
                 location: <br />
-                <input type="text" name="location" placeholder="location"><br /><br />
+                <input type="text" name="location" placeholder="location" value="<?php echo $location ?>"><br /><br />
                 contactNumber: <br />
-                <input type="text" name="contactNumber" placeholder="contactNumber">
+                <input type="text" name="contactNumber" placeholder="contactNumber" value="<?php echo $contactNumber ?>"><br /><br />
+                <input type="submit" name="submit" value="Submit">
             </form>
             <br>
-            <button class="forumSubmit" type="submit" name="submit">
-                Submit
-            </button>
+
+            <?php
+            $forum = $_GET['submit'];
+            if (empty($forum)) {
+                echo "there is nothing here";
+            } else {
+                echo "<h2> your things </h2>";
+                echo "<p> $userName </p>";
+                echo $_GET['submit'];
+            }
+            ?>
 
         </div>
 
