@@ -2,15 +2,35 @@
 // setting defualt vals for input forum
 $userName = $email = $password = $location = $contactNumber = "";
 $userNameErr = $emailErr = $passwordErr = $locationErr = $contactNumberErr = "";
-function test_input($data)
-{
-    if (empty($data)) {
-        echo "please fill in this filed";
-    }
-}
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (empty($_POST['userName'])) {
         $userNameErr =  "Please fill in userName field";
+    } else {
+        if (preg_match("/[`'\"~!@# $*()<>,:;{}\|]/", $userName)) {
+            $userNameErr = "Only letters and white space allowed";
+        }
+    }
+    //Password Validation
+    if (empty($_POST['password'])) {
+        $passwordErr =  "Please fill in password field";
+    } else {
+        $passwordlen = strlen($password);
+        if ($passwordlen < 6) {
+            $passwordErr = "Password too short";
+        }
+    }
+
+    if (empty($_POST['contactNumber'])) {
+        $contactNumberErr =  "Please fill in contactNumber field";
+    } else {
+        $contactNumLen = strlen($contactNumber);
+        if($contactNumLen < 11){
+            $contactNumberErr = "ContactNumber is too short";
+        }
+        elseif(preg_match("/^[a-zA-Z ]*$/",$contactNumber)){
+            $contactNumberErr = "Please only use numbers";
+        }
     }
 }
 
@@ -46,26 +66,31 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 userName: <br />
                 <input type="text" name="userName" placeholder="userName" value="<?php echo $userName ?>">
-                <span class="err"> * <?php echo $userNameErr ?> </span>
+                <span class="err"> * <?php
+                                        echo "<br />";
+                                        echo $userNameErr; ?> </span>
                 <br /><br />
 
                 email: <br />
                 <input type="text" name="email" placeholder="email" value="<?php echo $email ?>"><br /><br />
                 password:<br />
-                <input type="text" name="password" placeholder="password" value="<?php echo $password ?>"><br /><br />
+                <input type="text" name="password" placeholder="password" value="<?php echo $password ?>">
+                <span class="err"> * <?php
+                                        echo "<br />";
+                                        echo $passwordErr; ?> </span>
+                <br /><br />
                 location: <br />
                 <input type="text" name="location" placeholder="location" value="<?php echo $location ?>"><br /><br />
                 contactNumber: <br />
-                <input type="text" name="contactNumber" placeholder="contactNumber" value="<?php echo $contactNumber ?>"><br /><br />
+                <input type="text" name="contactNumber" placeholder="contactNumber" value="<?php echo $contactNumber ?>">
+                <span class="err"> * <?php
+                                        echo "<br />";
+                                        echo $contactNumberErr; ?> </span><br /><br />
+
                 <input type="submit" name="submit" value="Submit">
             </form>
-            <br>
-
-            <?php
-            $forum = $_GET['submit'];
-            test_input($_GET["userName"]);
-
-            ?>
+            <br>    
+            <?php echo $contactNumber?>
 
         </div>
 
