@@ -1,3 +1,16 @@
+<?php
+if (isset($_POST['submit'])) {
+    $name = $_POST['userName'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $location = $_POST['location'];
+    $contactNumber = $_POST['contactNumber'];
+
+    echo $name . $email . $password . $location  . $contactNumber;
+
+    echo "<script type='text/javascript'>alert('$name . $email . $password . $location  . $contactNumber';</script>";
+}
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -22,27 +35,27 @@
             <span class="forumHeaderText">
                 <P> This is just a quick and basic html forum testing out php, HTML5 and CSS</P>
             </span>
-            <form action="./forum.php">
+            <form class="form" action="./forum.php">
                 userName: <br />
-                <input type="text" name="firstname" value="firstname"><br /><br />
+                <input type="text" name="userName" placeholder="userName"><br /><br />
                 email: <br />
-                <input type="text" name="firstname" value="firstname"><br /><br />
+                <input type="text" name="email" placeholder="email"><br /><br />
                 password:<br />
-                <input type="text" name="firstname" value="firstname"><br /><br />
+                <input type="text" name="password" placeholder="password"><br /><br />
                 location: <br />
-                <input type="text" name="firstname" value="firstname"><br /><br />
+                <input type="text" name="location" placeholder="location"><br /><br />
                 contactNumber: <br />
-                <input type="text" name="firstname" value="firstname">
+                <input type="text" name="contactNumber" placeholder="contactNumber">
             </form>
             <br>
-            <button class="forumSubmit" type="submit">
+            <button class="forumSubmit" type="submit" name="submit">
                 Submit
             </button>
+
         </div>
 
     </div>
 
-    <script src="" async defer></script>
 </body>
 
 </html>
