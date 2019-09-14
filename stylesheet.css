@@ -5,12 +5,12 @@
   text-align: center;
 }
 div.mainDiv {
-    align-items: center;
-    justify-content: flex-start;
-    flex: 1;
-    text-align: center;
-    background: lightgray
-  }
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  text-align: center;
+  background: lightgray;
+}
 .forumSubmit {
   background-color: lightcyan;
   border-radius: 8px;
@@ -25,4 +25,9 @@ input {
   border-radius: 3px;
   box-shadow: -1px 1px #464646;
 }
-
+.err {
+  color: red;
+}
+.required {
+  color: red;
+}

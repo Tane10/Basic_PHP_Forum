@@ -1,6 +1,20 @@
 <?php
 // setting defualt vals for input forum
-$userName = $email = $password = $location = $contactNumber = ""
+$userName = $email = $password = $location = $contactNumber = "";
+$userNameErr = $emailErr = $passwordErr = $locationErr = $contactNumberErr = "";
+function test_input($data)
+{
+    if (empty($data)) {
+        echo "please fill in this filed";
+    }
+}
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    if (empty($_POST['userName'])) {
+        $userNameErr =  "Please fill in userName field";
+    }
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -25,11 +39,16 @@ $userName = $email = $password = $location = $contactNumber = ""
         <h1 id="title"> A basic forum </h1>
         <div>
             <span class="forumHeaderText">
-                <P> This is just a quick and basic html forum testing out php, HTML5 and CSS</P>
+                <p> This is just a quick and basic html forum testing out php, HTML5 and CSS</p>
+                <p class="required"> * required fields </p>
             </span>
-            <form class="form" method="get">
+
+            <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 userName: <br />
-                <input type="text" name="userName" placeholder="userName" value="<?php echo $userName ?>"><br /><br />
+                <input type="text" name="userName" placeholder="userName" value="<?php echo $userName ?>">
+                <span class="err"> * <?php echo $userNameErr ?> </span>
+                <br /><br />
+
                 email: <br />
                 <input type="text" name="email" placeholder="email" value="<?php echo $email ?>"><br /><br />
                 password:<br />
@@ -44,13 +63,8 @@ $userName = $email = $password = $location = $contactNumber = ""
 
             <?php
             $forum = $_GET['submit'];
-            if (empty($forum)) {
-                echo "there is nothing here";
-            } else {
-                echo "<h2> your things </h2>";
-                echo "<p> $userName </p>";
-                echo $_GET['submit'];
-            }
+            test_input($_GET["userName"]);
+
             ?>
 
         </div>
